@@ -40,8 +40,8 @@ def get_direct_url():
     items = re.findall(req, res.text)
     str = items[0]
     data = {
-        'username': '201541402424',
-        'password': '72005244728Aa',
+        'username': '×××',
+        'password': '×××',
         '__token__': str
     }
     response = s.post(URL, headers=header, allow_redirects=False, data=data)
