@@ -37,14 +37,10 @@ def get_redirect_url():
         URL, headers=config.header, allow_redirects=False, data=data)
     if response.status_code != 200:
         return None
-    log(response.text)
-    log("login successful")
-    req1 = re.compile(r'.*?token=(.*?)\\', re.S)
-    items1 = re.findall(req1, response.text)
-    log(items1[0])
-    token = items1[0]
-    direct_url = 'http://jwxt.dgut.edu.cn/dglgjw/login?token=' + token
-    log("new link", direct_url)
+    dic = json.loads(response.text)   #获取响应回来的token
+    dict_message = json.loads(dic)
+    if dict_message['message'] == "验证通过":    #是否是登陆成功
+        direct_url = dict_message['info']  #拿到token后 得到直链
     return direct_url
 
 
